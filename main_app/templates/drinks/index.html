@@ -11,6 +11,7 @@
 
         <p>Brand: {{ drink.brand }}</p>
         <p>Size: {{ drink.size }}</p>
+        <a href="{% url 'detail' drink.id %}">Detail</a>
     </div>
 </div>
 

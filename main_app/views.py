@@ -2,6 +2,7 @@ from django.shortcuts import render
 
 # Create your views here.
 from django.http import HttpResponse
+from .models import Drink
 
 
 def home(request):
@@ -13,19 +14,10 @@ def about(request):
 
 
 def drinks_index(request):
+    drinks = Drink.objects.all()
     return render(request, 'drinks/index.html', {'drinks': drinks})
 
 
-class Drink:
-    def __init__(self, name, brand, size):
-        self.name = name
-        self.brand = brand
-        self.size = size
-
-
-drinks = [
-    Drink('Coca-Cola', 'The Coca-Cola Company', '355 mL'),
-    Drink('Pepsi', 'PepsiCo', '355 mL'),
-    Drink('Sprite', 'The Coca-Cola Company', '500 mL'),
-    Drink('Fanta', 'The Coca-Cola Company', '500 mL'),
-]
+def detail(request, drink_id):
+    drink = Drink.objects.get(id=drink_id)
+    return render(request, 'drinks/detail.html', {'drink': drink})
