@@ -5,5 +5,9 @@ urlpatterns = [
     path('', views.home, name="home"),
     path('about/', views.about, name="about"),
     path('drinks/', views.drinks_index, name="drinks"),
+    path('drinks/create/', views.DrinkCreate.as_view(), name="drinks_create"),
     path('drinks/<int:drink_id>/', views.detail, name="detail"),
+    path('drinks/<int:pk>/edit/', views.DrinkUpdate.as_view(), name="drink_update"),
+    path('drinks/<int:pk>/delete/',
+         views.DrinkDelete.as_view(), name="drink_delete")
 ]

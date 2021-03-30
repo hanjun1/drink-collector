@@ -1,9 +1,17 @@
 {% extends 'base.html' %}
 {% block content %}
 
+{% if drink %}
+<h1>Edit <span class="teal-text">{{ drink.name }}</span></h1>
+{% else %}
+<h1>Add Drink</h1>
+{% endif %}
+
 <p>Drink ID: {{ drink.id }}</p>
 <p>Drink Name: {{ drink.name }}</p>
 <p>Drink Brand: {{ drink.brand }}</p>
 <p>Drink Size: {{ drink.size }}</p>
 
+<a href="/drinks/{{ drink.id }}/edit/">Edit</a>
+<a href="/drinks/{{ drink.id }}/delete/">Delete</a>
 {% endblock %}
