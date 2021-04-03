@@ -50,7 +50,48 @@
         </table>
     </div>
 </div>
-
+<hr>
+<div class="row">
+    <div class="col s6">
+        <h3>All drinkers for {{ drink.name }}</h3>
+        {% if drink.drinker.count %}
+        {% for drinker in drink.drinker.all %}
+        <div class="card">
+            <div class="card-content">
+                <span class="card-title">
+                    {{ drinker.name }}
+                </span>
+            </div>
+        </div>
+        {% endfor %}
+        {% else %}
+        <h5>No drinkers</h5>
+        {% endif %}
+    </div>
+    <!-- Available toys will come after this line -->
+    <div class="col s6">
+        <h3>Available Drinkers</h3>
+        {% if drinker.count %}
+        {% for drinker in drinker.all %}
+        <div class="card">
+            <div class="card-content">
+                <span class="card-title">
+                    {{ drinker.name }}
+                </span>
+            </div>
+            <div class="card-action">
+                <form action="{% url 'assoc_drinker' drink.id drinker.id %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="btn">Add</button>
+                </form>
+            </div>
+        </div>
+        {% endfor %}
+        {% else %}
+        <h5>{{drink.name}} Already Has All Drinkers Available</h5>
+        {% endif %}
+    </div>
+</div>
 <script>
     var dateEl = document.getElementById('id_date');
     M.Datepicker.init(dateEl, {

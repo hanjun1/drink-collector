@@ -4,10 +4,15 @@ from django.urls import reverse
 # Create your models here.
 
 
+class Drinker(models.Model):
+    name = models.CharField(max_length=100)
+
+
 class Drink(models.Model):
     name = models.CharField(max_length=100)
     brand = models.CharField(max_length=100)
     size = models.IntegerField()
+    drinker = models.ManyToManyField(Drinker)
 
     def __str__(self):
         return self.name
