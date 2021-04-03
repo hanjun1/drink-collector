@@ -14,4 +14,5 @@ urlpatterns = [
          views.add_pouring, name='add_pouring'),
     path('drinks/<int:drink_id>/assoc_drinker/<int:drinker_id>/',
          views.assoc_drinker, name="assoc_drinker"),
+    path('accounts/signup/', views.signup, name="signup"),
 ]
